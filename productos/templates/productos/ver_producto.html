@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+{% load humanize %}
+
+<div class="w-full shadow-2xl mt-10 p-10 rounded-2xl">
+  <h2 class="text-3xl mb-4 leading-tight text-blue-600 font-bold">Información del producto: </h2>
+  <p><strong>ID: </strong>{{ producto.id }}</p>
+  <p><strong>Nombre: </strong>{{ producto.nombre }}</p>
+  <p><strong>Precio: </strong>{{ producto.precio|intcomma }} $</p>
+  <p><strong>Stock: </strong>{{ producto.stock }}</p>
+  <br/>
+  <a
+    href="{% url "actualizar_producto" producto.id %}"
+    class="mt-10 mb-10 rounded border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+  >
+    <i class="fa-solid fa-pen-to-square"></i> Editar
+  </a>
+  <br/>
+  <br/>
+  <br/>
+  <a
+    href="{% url "listar_productos" %}"
+    class="mt-10 rounded border border-gray-500 bg-linear-to-r from-gray-600 to-gray-900 hover:border-blue-900 hover:to-gray-950 hover:from-gray-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+  >
+    <i class="fa-solid fa-arrow-left"></i> Volver
+  </a>
+
+</div>
+
+{% endblock content %}

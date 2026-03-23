@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+{% load humanize %}
+<div class="w-full shadow-2xl mt-10 p-10 rounded-2xl">
+  <h2 class="text-3xl mb-4 leading-tight text-blue-600 font-bold">Información del pedido:</h2>
+  <p><strong>ID: </strong>{{ pedido.id }}</p>
+  <p><strong>Cliente: </strong>{{ pedido.cliente }}</p>
+  <p><strong>Fecha: </strong>{{ pedido.fecha }}</p>
+  <p><strong>Estado: </strong>{{ pedido.estado }}</p>
+  <br/>
+  <h2 class="text-2xl mb-4 leading-tight text-blue-600 font-bold">Información del pedido:</h2>
+
+    {% for detalle in detalles %}
+    <div class="my-10">
+        <p><strong>Producto: </strong>{{detalle.producto_id}}</p>
+        <p><strong>Cantidad: </strong>{{detalle.cantidad}}</p>
+        <p><strong>Subtotal: </strong>{{ detalle.subtotal|intcomma }} $</p>
+        <hr />
+    </div>
+    {% endfor %}
+<br/>
+  <a
+    href="{% url "actualizar_pedido" pedido.id %}"
+    class="mt-10 mb-10 rounded border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+  >
+    <i class="fa-solid fa-pen-to-square"></i> Editar
+  </a>
+  <br/>
+  <br/>
+  <br/>
+  <a
+    href="{% url "listar_pedidos" %}"
+    class="mt-10 rounded border border-gray-500 bg-linear-to-r from-gray-600 to-gray-900 hover:border-blue-900 hover:to-gray-950 hover:from-gray-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+  >
+    <i class="fa-solid fa-arrow-left"></i> Volver
+  </a>
+
+</div>
+
+{% endblock content %}
