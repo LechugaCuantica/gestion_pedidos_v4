@@ -1,18 +1,21 @@
 {% extends "base.html" %} {% block content %}
-<div class="w-full">
-  <div class="py-8">
-    <div class="">
-      <h2 class="text-3xl text-center leading-tight text-blue-600 font-bold">
-        Pedidos
-      </h2>
-      <div class="text-end my-7">
-        <a href="{% url "crear_pedido" %}" class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white">Crear pedido</a>
+    <div class="bg-white shadow-md rounded-xl p-6 mb-6 border border-blue-100 mt-10">
+      
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        
+        <div>
+          <h1 class="text-3xl font-bold text-blue-900">Gestión de Pedidos</h1>
+          <p class="text-slate-500 mt-1">Administra, crea y edita la información fácilmente</p>
+        </div>
+
+        <a href="{% url "crear_pedido" %}" class="rounded  border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9  text-white"> <i class="fa-solid fa-plus"></i> Crear pedido</a>
+
       </div>
     </div>
-    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-      <div
-        class="inline-block min-w-full shadow border-t border-gray-400 rounded-lg overflow-hidden"
-      >
+    <div class="bg-white shadow-lg rounded-xl border border-blue-100">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between p-5 border-b border-slate-200 gap-4">
+        <h2 class="text-lg font-semibold text-blue-800">Lista de pedidos</h2>
+      </div>
         <table class="min-w-full leading-normal">
           <thead class="bg-gray-50">
             <tr>
@@ -65,11 +68,11 @@
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap">
                     {% if pedido.estado == 'pendiente' %}
-                    <div style="padding-top: 0.1em; padding-bottom: 0.1rem" class="text-sm px-3 bg-yellow-200 text-gray-800 rounded-full text-center">{{pedido.estado}}</div>
-                    {% elif pedido.estado == 'enviado' %}
-                    <div style="padding-top: 0.1em; padding-bottom: 0.1rem" class="text-sm px-3 bg-blue-200 text-gray-800 rounded-full text-center">{{pedido.estado}}</div>
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase">{{pedido.estado}}</span>      
+                {% elif pedido.estado == 'enviado' %}
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-blue-100 text-blue-800 uppercase">{{pedido.estado}}</span>      
                     {% elif pedido.estado == 'entregado' %}
-                    <div style="padding-top: 0.1em; padding-bottom: 0.1rem" class="text-sm px-3 bg-green-200 text-gray-800 rounded-full text-center">{{pedido.estado}}</div>
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r from-blue-500 to-blue-700 text-white shadow-sm uppercase">{{pedido.estado}}</span>      
                   {% endif %}
                   
                 </p>
@@ -117,7 +120,7 @@
           </tbody>
         </table>
         <div
-          class="px-5 bg-white py-5 flex flex-col xs:flex-row items-end xs:justify-between"
+          class="px-5 bg-white py-5 rounded-b-xl flex flex-col xs:flex-row items-end xs:justify-between"
         >
           <div class="flex items-center">
             {% if page_obj.has_previous %}
@@ -150,13 +153,11 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="text-center">
+
+    <div class="text-center mt-5">
       {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
     </div>
 
-  </div>
-</div>
 
 <script>
     function onReportPdf(url){

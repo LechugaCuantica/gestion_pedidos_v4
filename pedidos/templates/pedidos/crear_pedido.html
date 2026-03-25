@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 
-<form method="POST" class="shadow-2xl rounded-2xl mt-10 p-10 w-full">
-  <h2 class="text-3xl leading-tight font-bold">Crear Pedido</h2>
+<form method="POST" class="shadow-2xl rounded-2xl mt-10 p-10 w-full bg-white">
+  <h2 class="text-3xl leading-tight font-bold text-blue-900">Crear Pedido</h2>
   {% csrf_token %} {% for field in form %}
   <div class="relative float-label-input">
     {{ field }}
@@ -44,7 +44,7 @@
   </div>
   <button
     type="button"
-    class="mt-10 rounded border border-green-500 bg-linear-to-r from-green-600 to-green-900 hover:border-blue-900 hover:to-green-950 hover:from-green-900 transition-colors duration-200 cursor-pointer py-3 px-9 text-white"
+    class="rounded border border-green-500 bg-linear-to-r from-green-600 to-green-900 hover:border-blue-900 hover:to-green-950 hover:from-green-900 transition-colors duration-200 cursor-pointer py-3 px-9 text-white"
     id="add-form"
   >
     <i class="fa-solid fa-plus"></i>
@@ -53,9 +53,9 @@
   <br />
   <button
     type="submit"
-    class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+    class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 text-white"
   >
-    Guardar
+    <i class="fa-solid fa-floppy-disk"></i> Guardar
   </button>
   <br />
   <a

@@ -2,9 +2,11 @@
 <form
   method="POST"
   id="formClientes"
-  class="shadow-2xl rounded-2xl mt-10 p-10 w-full"
+  class="shadow-2xl rounded-2xl mt-10 p-10 w-full bg-white"
 >
-  <h2 class="text-3xl leading-tight font-bold">Actualizar Cliente</h2>
+  <h2 class="text-3xl leading-tight font-bold text-blue-900">
+    Actualizar Cliente
+  </h2>
   {% csrf_token %} {% for field in form %}
   <div class="relative float-label-input">
     {{ field }}
@@ -20,9 +22,9 @@
   <button
     type="button"
     onclick="onUpdate()"
-    class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 w-xs text-white"
+    class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 text-white"
   >
-    Guardar
+    <i class="fa-solid fa-floppy-disk"></i> Guardar
   </button>
   <br />
   <a

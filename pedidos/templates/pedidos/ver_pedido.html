@@ -1,16 +1,23 @@
 {% extends "base.html" %} {% block content %}
 {% load humanize %}
-<div class="w-full shadow-2xl mt-10 p-10 rounded-2xl">
-  <h2 class="text-3xl mb-4 leading-tight text-blue-600 font-bold">Información del pedido:</h2>
+<div class="w-full shadow-2xl mt-10 p-10 rounded-2xl bg-white">
+  <h2 class="text-3xl mb-4 leading-tight text-blue-900 font-bold">Información del pedido:</h2>
   <p><strong>ID: </strong>{{ pedido.id }}</p>
   <p><strong>Cliente: </strong>{{ pedido.cliente }}</p>
   <p><strong>Fecha: </strong>{{ pedido.fecha }}</p>
-  <p><strong>Estado: </strong>{{ pedido.estado }}</p>
-  <br/>
-  <h2 class="text-2xl mb-4 leading-tight text-blue-600 font-bold">Información del pedido:</h2>
+  <p><strong>Estado: </strong>
+                      {% if pedido.estado == 'pendiente' %}
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase">{{pedido.estado}}</span>      
+                      {% elif pedido.estado == 'enviado' %}
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-blue-100 text-blue-800 uppercase">{{pedido.estado}}</span>      
+                      {% elif pedido.estado == 'entregado' %}
+                    <span class="px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r from-blue-500 to-blue-700 text-white shadow-sm uppercase">{{pedido.estado}}</span>      
+                      {% endif %}
+  </p>
+  <h2 class="text-2xl mt-10 mb-4 leading-tight text-blue-950 font-bold">Detalles del pedido:</h2>
 
     {% for detalle in detalles %}
-    <div class="my-10">
+    <div class="my-5">
         <p><strong>Producto: </strong>{{detalle.producto_id}}</p>
         <p><strong>Cantidad: </strong>{{detalle.cantidad}}</p>
         <p><strong>Subtotal: </strong>{{ detalle.subtotal|intcomma }} $</p>
