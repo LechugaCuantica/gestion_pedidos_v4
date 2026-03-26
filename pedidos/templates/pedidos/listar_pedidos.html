@@ -85,12 +85,12 @@
                     Ver
                   </div>
             </a>
-            <a href="{% url "actualizar_pedido" pedido.id %}" class="text-base  rounded-l-none rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-blue-700 hover:text-blue-100 bg-blue-100 text-blue-700 border duration-200 ease-in-out border-blue-600 transition">
+            <button onclick="onUpdate('{% url "actualizar_pedido" pedido.id %}')" class="text-base  rounded-l-none rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-blue-700 hover:text-blue-100 bg-blue-100 text-blue-700 border duration-200 ease-in-out border-blue-600 transition">
                 <div class="flex leading-5">
                     <i class="fa-solid fa-pen-to-square mt-1 me-1"></i>
                     Editar
                   </div>
-            </a>
+            </button>
             <button onclick="onReportPdf('{% url 'reporte_pdf' pedido.id %}')" class="text-base  rounded-l-none rounded-r-none  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-blue-700 hover:text-blue-100 bg-blue-100 text-blue-700 border duration-200 ease-in-out border-blue-600 transition">
                 <div class="flex leading-5">
                   <i class="fa-solid fa-file-arrow-down mt-1 me-1"></i>
@@ -175,7 +175,25 @@
           window.location.href = url
         }
     });
+  }
+    
+function onUpdate(url){
+          Swal.fire({
+        title: '¿Seguro que quieres actualizar este pedido?',
+        icon: "warning",
+        showCancelButton: true,
+        background: "#f8f9fa",
+        confirmButtonColor: "#00a13d",
+        cancelButtonColor: "#c6c9cb",
+        confirmButtonText: "Si, Actualizar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url
+        }
+    });
 }
+
 
 </script>
 {% endblock content %}

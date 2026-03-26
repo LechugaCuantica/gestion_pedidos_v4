@@ -15,12 +15,12 @@
       for="{{ field.id_for_label }}"
       >{{ field.label }}</label
     >
+        <p class="text-red-500 text-xs italic">{{ field.errors.0 }}</p>
   </div>
 
   {% endfor %}
   <button
-    type="button"
-    onclick="onUpdate()"
+    type="submit"
     class="rounded mb-10 border border-blue-500 bg-linear-to-r from-blue-600 to-blue-900 hover:border-blue-900 hover:to-blue-950 hover:from-blue-900 transition-colors duration-200 cursor-pointer py-3 px-9 text-white"
   >
     <i class="fa-solid fa-floppy-disk"></i>
@@ -36,23 +36,17 @@
 </form>
 
 <script>
-  const form = document.querySelector("#formProducts");
+    document.addEventListener("DOMContentLoaded", (e) => {
+    const fields = document.querySelectorAll(".float-label-input");
 
-  function onUpdate() {
-    Swal.fire({
-      title: "¿Estás seguro de actualizar este registro?",
-      icon: "warning",
-      showCancelButton: true,
-      background: "#f8f9fa",
-      confirmButtonColor: "#3283ff",
-      cancelButtonColor: "#c6c9cb",
-      confirmButtonText: "Si, Actualizar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        form.submit();
+    fields.forEach((field) => {
+      const error = field.querySelector("p");
+      const input = field.querySelector("input, select");
+
+      if (error.textContent.trim() !== "") {
+        input.classList.replace("border-gray-300", "border-red-500");
       }
     });
-  }
+  });
 </script>
 {% endblock content %}

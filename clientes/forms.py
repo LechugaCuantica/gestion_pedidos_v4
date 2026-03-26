@@ -42,6 +42,11 @@ class ClientesForm(forms.ModelForm):
         # Si no se ha ingresado
         if telefono is None:
             raise forms.ValidationError('El telefono no puede estar vacio')
+        
+        
+        if len(str(telefono)) < 10:
+            raise forms.ValidationError('El telefono debe tener al menos 10 digitos')
+
 
         # Si no son dígitos
         if not telefono.isdigit():

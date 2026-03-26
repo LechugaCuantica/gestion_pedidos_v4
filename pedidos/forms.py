@@ -18,6 +18,11 @@ class PedidosForm(forms.ModelForm):
             'estado': forms.Select(attrs={'class': 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3  appearance-none leading-normal focus:border-blue-400'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Para que el select no tenga ---
+        self.fields['cliente'].empty_label = None
+            
     # Para validar la fecha
     def clean_fecha(self):
         fecha = self.cleaned_data.get('fecha')
@@ -54,6 +59,12 @@ class DetallePedidoForm(forms.ModelForm):
             'producto_id': forms.Select(attrs={'class': 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3  appearance-none leading-normal focus:border-blue-400'}),
             'cantidad': forms.NumberInput(attrs={'class': 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3  appearance-none leading-normal focus:border-blue-400'})
         }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Para que el select no tenga ---
+        self.fields['producto_id'].empty_label = None
+        
 
     # Validamos la cantidad
     def clean_cantidad(self):

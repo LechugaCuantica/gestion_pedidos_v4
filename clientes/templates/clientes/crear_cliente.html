@@ -32,4 +32,22 @@
     <i class="fa-solid fa-arrow-left"></i> Volver
   </a>
 </form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (e) => {
+    const fields = document.querySelectorAll(".float-label-input");
+
+    fields.forEach((field) => {
+      const error = field.querySelector("p");
+      const input = field.querySelector("input, select");
+
+      console.log(error);
+
+      if (error.textContent.trim() !== "") {
+        input.classList.replace("border-gray-300", "border-red-500");
+      }
+    });
+  });
+
+</script>
 {% endblock content %}
